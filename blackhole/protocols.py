@@ -149,6 +149,7 @@ class StreamReaderProtocol(asyncio.StreamReaderProtocol):
                 pass
             self._writer.close()
             await self._writer.drain()
+            await self._writer.wait_closed()
         self._connection_closed = True
 
     async def push(self, msg):
